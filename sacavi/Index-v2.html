@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacavi</title>
+
+
+
+    <style>
+        img{
+            width: 40px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="box">
+        <form>
+            <div>
+                <label for="author">Author</label><br>
+                <input type="text" name="author" id="author" placeholder="Author" required>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="bookName">Book name</label><br>
+                <input type="text" name="bookName" id="bookName" placeholder="Book name">
+            </div>
+
+            <br>
+
+            <div>
+                <label for="year">Year</label><br>
+                <input type="text" name="year" id="year" placeholder="Year">
+            </div>
+
+            <br>
+
+            <div>
+                <label for="publisher">Publisher</label><br>
+                <input type="text" name="publisher" id="publisher" placeholder="Publisher">
+            </div>
+
+            <br>
+
+            <div>
+                <label for="price">Price</label><br>
+                <input type="text" name="price" id="price" placeholder="Price">
+            </div>
+
+            <br>
+
+            <div>
+                <input type="button" value="Search" onclick="search();">
+                <input type="reset" value="Reset">
+            </div>
+
+
+        </form>
+    </div>
+
+
+    <hr>
+    <br><br>
+    <p id="result">
+
+    </p><br>
+    <hr>
+
+    <h1>Available books</h1><hr>
+
+    <p id="demo"></p>
+    
+
+
+
+
+    <script>
+
+
+
+
+        const Books = [
+		                {"Autor":"ილია ჭავჭავაძე"
+						,"BookName":"წერილები ლიტერატურასა და ხელოვნებაზე"
+						,"Year":"1986"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"1.jpg"
+						},
+					    {"Autor":"ილია ჭავჭავაძე"
+						,"BookName":"მოგონებები გარდასულ დღეთა"
+						,"Year":"1987"
+						,"Editor":"მერანი"
+						,"Fasi":"15 ლარი"
+						,"ImgCover":"2.jpg"
+						},
+						{"Autor":"ლევან სანიკიძე"
+						,"BookName":"უქარქაშო ხმლები"
+						,"Year":"1986"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"3.jpg"
+						},
+						{"Autor":"კონსტანტინე გამსახურდია"
+						,"BookName":"მთვარის მოტაცება"
+						,"Year":"1990"
+						,"Editor":"მერანი"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"4.jpg"
+						},
+						{"Autor":"კონსტანტინე გამსახურდია"
+						,"BookName":"დავით აღმაშენებელი"
+						,"Year":"1989"
+						,"Editor":"მერანი"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"5.jpg"
+						},
+						{"Autor":"ოთარ ჩხეიძე"
+						,"BookName":"რკალი"
+						,"Year":"1986"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"6.jpg"
+						},
+						{"Autor":"ალექსანდრე კალანდაძე"
+						,"BookName":"სახიფათო მოსახვევები"
+						,"Year":"1990"
+						,"Editor":"მერანი"
+						,"Fasi":"7 ლარი"
+						,"ImgCover":"7.jpg"
+						},
+						{"Autor":"ა.ს.პუშკინი"
+						,"BookName":"მოთხრობები"
+						,"Year":"1970"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"10 ლარი"
+						,"ImgCover":"8.jpg"
+						},
+						{"Autor":"იოანე ბატონიშვილი"
+						,"BookName":"ხუმარსწავლა"
+						,"Year":"1990"
+						,"Editor":"მერანი"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"9.jpg"
+						},
+						{"Autor":"გრიგოლ აბაშიძე"
+						,"BookName":"ცოტნე&ყორნალი"
+						,"Year":"1982"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"10.jpg"
+						},
+						{"Autor":"აკაკი წერეთელი"
+						,"BookName":"ჩემი თავგადასავალი"
+						,"Year":"1989"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"11.jpg"
+						},
+						{"Autor":"სერგი დურმიშიძე"
+						,"BookName":"ზოგი რამ წარსულიდან"
+						,"Year":"1987"
+						,"Editor":"მეცნიერება"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"12.jpg"
+						},
+						{"Autor":"არჩილ სულაკაური"
+						,"BookName":"სამი რომანი"
+						,"Year":"1988"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"13.jpg"
+						},
+						{"Autor":"მამია ჩორგოლაშვილი"
+						,"BookName":"ფრესკის ღიმილი"
+						,"Year":"1978"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"7 ლარი"
+						,"ImgCover":"14.jpg"
+						},
+						{"Autor":"გურამ ფანჯიკიძე"
+						,"BookName":"თხზულებანი"
+						,"Year":"1987"
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"15.jpg"
+						}
+		];
+
+
+
+
+
+            var list = '<table border="1">';
+
+
+                list += `<tr>
+                                <td>N</td>
+                                <td>Cover</td>
+                                <td>Author</td>
+                                <td>Name of the book</td>
+                                <td>Publisher</td>
+                                <td>Year</td>
+                                <td>Price</td>
+
+                                
+                                
+                                </tr>`;
+
+
+
+            for(var i = 0; i < Books.length; i++){
+            
+                list += `<tr>
+                                <td>${i+1}</td>
+                                <td><img src='potoebi/${Books[i].ImgCover}'></td>
+                                <td>${Books[i].Autor}</td>
+                                <td>${Books[i].BookName}</td>
+                                <td>${Books[i].Editor}</td>
+                                <td>${Books[i].Year}</td>
+                                <td>${Books[i].Fasi}</td>
+                                
+                                
+                                </tr>`;
+
+			}
+
+            list += `</table>`;
+
+            document.getElementById('demo').innerHTML = list;
+
+
+            var result = '';
+
+            function search(){
+                var s_author = document.getElementById('author').value;
+                var s_bookName = document.getElementById('bookName').value;
+                var s_publisher = document.getElementById('publisher').value;
+                var s_year = document.getElementById('year').value;
+                var s_price = document.getElementById('price').value;
+
+                
+
+                if(s_author.length == 0 && s_bookName.length == 0 &&
+                    s_publisher.length == 0 && s_year.length == 0 &&
+                    s_price.length == 0){
+                        result = "we didn't find anything";
+                }
+
+
+                else{
+                    result = '<h1>We found:</h1><table border="1">';
+
+                    for(var i =0; i<Books.length;i++){
+
+                        if(
+                           (s_author =='' || (s_author.length > 0 && Books[i].Autor.indexOf(s_author) != -1)) &&
+                           (s_bookName =='' || (s_bookName.length > 0 && Books[i].BookName.indexOf(s_bookName) != -1)) &&
+                           (s_publisher =='' || (s_publisher.length > 0 && Books[i].Editor.indexOf(s_publisher) != -1)) &&
+                           (s_year =='' || (s_year.length > 0 && Books[i].Year.indexOf(s_year) != -1)) &&
+                           (s_price =='' || (s_price.length > 0 && Books[i].Fasi.indexOf(s_price) != -1))
+                        ){
+                            result += `<tr>
+                                <td><img src='potoebi/${Books[i].ImgCover}'></td>
+                                <td>${Books[i].Autor}</td>
+                                <td>${Books[i].BookName}</td>
+                                <td>${Books[i].Editor}</td>
+                                <td>${Books[i].Year}</td>
+                                <td>${Books[i].Fasi}</td>
+                                
+                                </tr>`;
+                        }
+
+                    }
+
+
+
+                    if(result == '<table border="1">')
+                        result = "we didn't find anything";
+                    else result += '</table>';
+
+                }
+
+                document.getElementById('result').innerHTML = result;
+            }
+
+
+    </script>
+
+</body>
+</html>
