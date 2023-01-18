@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html>
+	<head>
+		<title>დომინო Domino</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	</head>
+	
+	<body>
+
+		
+		<section>
+
+			<div id="dafa">
+				<div class="box">
+					<img src="images/man.png">
+					<img src="images/back.png" onclick="qulaMEPC(1)" id="surati1">
+					<img src="images/back.png" onclick="qulaMEPC(2)" id="surati2">
+					<img src="images/back.png" onclick="qulaMEPC(3)" id="surati3">
+					<img src="images/back.png" onclick="qulaMEPC(4)" id="surati4">
+					<img src="images/back.png" onclick="qulaMEPC(5)" id="surati5">
+				</div>
+			    
+
+
+				<div class="box">
+					<img src="images/woman.png">
+					<img src="images/back.png" id="damatebiti1">
+					<img src="images/back.png" id="damatebiti2">
+					<img src="images/back.png" id="damatebiti3">
+					<img src="images/back.png" id="damatebiti4">
+					<img src="images/back.png" id="damatebiti5">
+				</div>
+				
+				
+				
+				<p id="result" style="font-weight: bold;font-size: 30px;"> </p>
+				<p id="count" style="font-weight: bold;font-size: 30px;"></p>
+			</div>
+			
+			<script>
+			
+			const arr = [
+            "0-0.png",
+			"0-1.png",
+			"0-2.png",
+			"0-3.png",
+			"0-4.png",
+			"0-5.png",
+			"0-6.png",
+			
+			"1-1.png",
+			"1-2.png",
+			"1-3.png",
+			"1-4.png",
+			"1-5.png",
+			"1-6.png",
+			
+			"2-2.png",
+			"2-3.png",
+			"2-4.png",
+			"2-5.png",
+			"2-6.png",
+			
+			"3-3.png",
+			"3-4.png",
+			"3-5.png",
+			"3-6.png",
+			
+			"4-4.png",
+			"4-5.png",
+			"4-6.png",
+			
+			"5-5.png",
+			"5-6.png",
+			
+			"6-6.png"
+            ];
+
+			const jami1 = [], jami2 = [];
+			var current1 = 0, current2 = 0, sum1 = 0, sum2=0;
+            
+
+			function qulaMEPC(n){
+				var size = arr.length;
+
+				var index1 = Math.floor(Math.random() * size);
+				var index2 = Math.floor(Math.random() * size);
+
+				document.getElementById("surati" + n).src = 'images/' + arr[index1];
+				document.getElementById("damatebiti" + n).src = 'images/' + arr[index2];
+
+				current1 = parseInt(arr[index1][0]) + parseInt(arr[index1][2]);
+				current2 = parseInt(arr[index2][0]) + parseInt(arr[index2][2]);
+
+
+				jami1[n] = current1;
+				jami2[n] = current2;
+
+				sum1 = 0;
+				sum2 = 0;
+
+				for(var i = 1; i<=5;i++){
+					if(jami1[i] != undefined)
+						sum1 += jami1[i];
+
+					if(jami2[i] != undefined)
+						sum2 += jami2[i];
+				}
+
+
+				console.log(current1 + ' / ' + current2);
+
+				document.getElementById('count').innerHTML = sum1 + ' / ' + sum2;
+
+				if(sum1 > sum2){
+					document.getElementById('result').innerHTML = 'იგებ ჯიგარო';
+					document.getElementById('result').style.color = 'green';
+				}
+				else if(sum1 == sum2){
+					document.getElementById('result').innerHTML = 'როვნად მიდიხართ';
+					document.getElementById('result').style.color = 'orange';					
+				}
+				else{
+					document.getElementById('result').innerHTML = 'აგებ შეჩემა';
+					document.getElementById('result').style.color = 'red';
+				}
+
+				
+			}	
+			
+			</script>
+
+		</section>
+
+	</body>
+</html>
